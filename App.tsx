@@ -2060,7 +2060,7 @@ const NavBar = ({ theme, toggleTheme }: { theme: 'light' | 'dark', toggleTheme: 
           </div>
 
           <div className="flex items-center gap-2">
-             {/* <button 
+             <button 
                onClick={toggleTheme}
                className="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white rounded-lg transition-colors overflow-hidden relative"
                aria-label="Toggle Theme"
@@ -2069,7 +2069,7 @@ const NavBar = ({ theme, toggleTheme }: { theme: 'light' | 'dark', toggleTheme: 
                  <Sun className={`w-5 h-5 absolute inset-0 transition-all duration-500 ${theme === 'dark' ? 'opacity-0 rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'}`} />
                  <Moon className={`w-5 h-5 absolute inset-0 transition-all duration-500 ${theme === 'light' ? 'opacity-0 -rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'}`} />
                </div>
-             </button> */}
+             </button>
              
              {/* Mobile Menu Button */}
              <button 
