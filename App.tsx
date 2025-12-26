@@ -33,6 +33,66 @@ const useTheme = () => {
   return context;
 };
 
+
+// Subtle Twinkling Stars Component
+const TwinkleStars = () => {
+  const stars = useMemo(() => Array.from({ length: 12 }).map((_, i) => ({
+    id: i,
+    top: `${Math.random() * 60}%`,
+    left: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 5}s`,
+    scale: Math.random() * 0.5 + 0.5
+  })), []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30">
+      {stars.map(star => (
+        <div 
+          key={star.id}
+          className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+          style={{
+            top: star.top,
+            left: star.left,
+            animationDelay: star.delay,
+            transform: `scale(${star.scale})`
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+
+// Subtle Festive Snowfall
+const Snowfall = () => {
+  const flakes = useMemo(() => Array.from({ length: 22 }).map((_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    size: `${Math.random() * 3 + 2}px`,
+    duration: `${Math.random() * 15 + 15}s`,
+    delay: `${Math.random() * 10}s`,
+  })), []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+      {flakes.map(flake => (
+        <div 
+          key={flake.id}
+          className="absolute top-[-20px] bg-white rounded-full opacity-10 blur-[0.5px] animate-snowfall"
+          style={{
+            left: flake.left,
+            width: flake.size,
+            height: flake.size,
+            animationDuration: flake.duration,
+            animationDelay: flake.delay
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+
 // --- Animation Components & Hooks ---
 
 // Scroll Reveal Component
@@ -631,26 +691,49 @@ const HomePage = () => {
     <PageTransition>
       <div className="min-h-screen relative overflow-hidden font-sans text-slate-900 dark:text-slate-100">
         
-        <div className="max-w-7xl mx-auto px-6 pt-20 pb-20">
+        {/* Background Atmosphere Effects */}
+        <Snowfall />
+        <TwinkleStars />
+
+        <div className="max-w-7xl mx-auto px-6 pt-20 pb-20 relative z-10">
           {/* Hero Section */}
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-24">
             
             {/* Text Content - Renders Immediately */}
             <div className="space-y-8 text-center lg:text-right relative z-10 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-100/50 dark:bg-cyan-900/30 border border-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-bold mb-2 backdrop-blur-sm animate-scale-in delay-100">
-                <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-                <span>منصة تعليمية ذكية 100%</span>
+              
+              {/* Seasonal Branding & Greetings */}
+              <div className="flex flex-col items-center lg:items-end gap-3 mb-2">
+                <div className="relative group inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-100/40 dark:bg-cyan-900/20 border border-cyan-500/10 text-cyan-600 dark:text-cyan-400 text-xs font-bold backdrop-blur-sm animate-scale-in shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+                  {/* Subtle Swinging Ornament */}
+                  <div className="absolute -top-6 left-4 lg:left-auto lg:-right-4 animate-swing hidden md:block">
+                     <div className="w-px h-6 bg-slate-300 dark:bg-slate-700 mx-auto"></div>
+                     <star className="w-3 h-3 text-yellow-400/60 fill-yellow-400/20" />
+                  </div>
+
+                  <Sparkles className="w-3.5 h-3.5 animate-pulse text-cyan-500" />
+                  <span>منصة تعليمية ذكية 100%</span>
+                  <div className="w-px h-3 bg-cyan-500/20 mx-1"></div>
+                  <span className="text-blue-500 dark:text-cyan-300 flex items-center gap-1">
+                    🎄 <span className="font-black">تحديث  2026</span>
+                  </span>
+                </div>
+                
+                <p className="text-sm font-bold text-slate-500 dark:text-slate-400 animate-fade-in-up delay-100 flex items-center gap-2">
+                  <span className="text-cyan-500">✨</span>
+                  عام جديد، رحلة تعلم جديدة نحو الاحتراف
+                </p>
               </div>
               
               <h1 className="text-5xl lg:text-6xl font-black leading-tight tracking-tight text-slate-900 dark:text-white reveal-hidden reveal-visible transition-all duration-1000">
                تعلم قواعد البيانات
               </h1>
-              <h1 className="text-5xl lg:text-4.5xl font-black leading-tight tracking-tight mb-20 gradient-text animate-pulse-glow">
+              <h1 className="text-5xl lg:text-4.5xl font-black leading-tight tracking-tight mb-20 gradient-text animate-pulse-glow animate-sparkle">
                  من الصفر الى الاحتراف
               </h1>
               
               <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl mx-auto lg:mx-0 animate-fade-in-up delay-200">
-                ابدأ رحلتك في تعلم SQL Server وادخل سوق العمل بثقة. منصة "SQL Master" هي محطتك الأولى للتعلم العملي والتطبيقي، مع محاكي كود فوري.
+                ابدأ رحلتك في تعلم SQL Server وادخل سوق العمل بثقة. منصة "SQL Master" هي محطتك الأولى للتعلم العملي والتطبيقي، مع محاكي كود فوري ومجتمع طلابي متفاعل.
               </p>
 
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 animate-fade-in-up delay-300">
@@ -688,6 +771,8 @@ const HomePage = () => {
                         <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
                         <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
                         <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
+                        <div className="flex-1"></div>
+                        <div className="text-[10px] font-bold text-slate-400/40 tracking-widest">2026 EDITION</div>
                       </div>
                       <div className="flex-1 p-6 font-mono text-sm space-y-2 text-slate-600 dark:text-slate-300" dir="ltr">
                         <div className="flex gap-2"><span className="text-purple-600 dark:text-purple-400">SELECT</span> <span className="text-cyan-600 dark:text-cyan-400">*</span> <span className="text-purple-600 dark:text-purple-400">FROM</span> <span className="text-yellow-600 dark:text-yellow-400">Future</span></div>
@@ -712,12 +797,6 @@ const HomePage = () => {
             )}
           </div>
 
-          {/* Developer Note - Deferred */}
-          {showHeavyVisuals && (
-            <div className="mb-24">
-            </div>
-          )}
-
           {/* Features Section */}
           <ScrollReveal>
             <div className="text-center mb-16 space-y-4">
@@ -733,7 +812,7 @@ const HomePage = () => {
                  color: "text-orange-500 dark:text-orange-400", 
                  bg: "bg-orange-500/10",
                  title: "محتوى أكاديمي متخصص", 
-                 desc: "شرح شامل يغطي كافة المفاهيم الأساسية والمتقدمة التي تحتاجها في رحلة تعلمك." 
+                 desc: "شرح شامل يغطي كافة المفاهيم الأساسية والمتقدمة التي تحتاجها في رحلة تعلمك الجامعية والمهنية." 
                },
                { 
                  icon: Code, 
@@ -747,11 +826,11 @@ const HomePage = () => {
                  color: "text-purple-500 dark:text-purple-400", 
                  bg: "bg-purple-500/10",
                  title: "تطبيق عملي فوري", 
-                 desc: "تعلم من خلال الممارسة المباشرة مع أمثلة حية وتمارين تفاعلية تعزز فهمك للمادة." 
+                 desc: "تعلم من خلال الممارسة المباشرة مع أمثلة حية وتمارين تفاعلية تعزز فهمك للمادة وترسخ المهارة." 
                }
              ].map((feature, idx) => (
                <ScrollReveal key={idx} delay={idx * 150}>
-                 <div className="group relative glass-morphism p-8 rounded-3xl hover-card">
+                 <div className="group relative glass-morphism p-8 rounded-3xl hover-card overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent dark:from-white/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl pointer-events-none"></div>
                     <div className={`w-14 h-14 ${feature.bg} rounded-2xl flex items-center justify-center ${feature.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
                        <feature.icon className="w-7 h-7" />
@@ -769,6 +848,7 @@ const HomePage = () => {
     </PageTransition>
   );
 };
+
 
 const LearnPage = () => {
   return (
@@ -1979,9 +2059,8 @@ const NavBar = ({ theme, toggleTheme }: { theme: 'light' | 'dark', toggleTheme: 
              })}
           </div>
 
-          {/* Actions */}
           <div className="flex items-center gap-2">
-             <button 
+             {/* <button 
                onClick={toggleTheme}
                className="p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-slate-900 dark:hover:text-white rounded-lg transition-colors overflow-hidden relative"
                aria-label="Toggle Theme"
@@ -1990,7 +2069,7 @@ const NavBar = ({ theme, toggleTheme }: { theme: 'light' | 'dark', toggleTheme: 
                  <Sun className={`w-5 h-5 absolute inset-0 transition-all duration-500 ${theme === 'dark' ? 'opacity-0 rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'}`} />
                  <Moon className={`w-5 h-5 absolute inset-0 transition-all duration-500 ${theme === 'light' ? 'opacity-0 -rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'}`} />
                </div>
-             </button>
+             </button> */}
              
              {/* Mobile Menu Button */}
              <button 
@@ -2107,3 +2186,5 @@ export default function App() {
     </HashRouter>
   );
 }
+
+
